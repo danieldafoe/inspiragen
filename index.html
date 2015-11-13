@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="HeadlineGenerator">
+<head>
+	<title>Inspiragen | Inspire Great Ideas | Daniel Dafoe</title>
+	<link href="css/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+	<link href="css/main.css" rel="stylesheet"/>
+</head>
+<body ng-controller="HeadlineController">
+	<div class="submit-container">
+		<div id="submit" class="submit">
+			<form name="headline-submission" method="POST">
+				<h2>Submit</h2>
+				<p>What inspires you? Enter a headline, quote, or phrase to help inspire others. Maximum 150 characters.</p>
+				<textarea ng-model="post.headline" rows="3" name="headline" placeholder="Text"></textarea>
+				<input ng-model="post.creator" type="text" name="creator" placeholder="Creator" />
+				<input ng-model="post.url" type="text" name="url" placeholder="URL" title="If applicable, enter a URL people can find you at." />
+				<div class="buttons">
+					<button type="submit" method="post" ng-click="postHeadline(post)" name="submit" form="headline-submission" title="Submit your headline">Submit</button>
+					<button type="button" ng-click="closeSubmit()" title="Cancel your submission">Cancel</button>
+				</div>
+			</form>
+		</div>
+		<div class="submit-close">
+			<button ng-click="closeSubmit()"><i class="fa fa-close"></i> CLOSE</button>
+		</div>
+	</div> <!-- End of submit container -->
+
+	<div id="alert" class="alert alert-primary">
+		<div class="alert-inner">
+			<h3>Success!</h3>
+			<p>
+				Your inspiration was submitted and will now show up in rotation. Thank you.
+			</p>
+		</div>
+		<div class="alert-close">
+			<button id="closeAlert"><i class="fa fa-close fa-2x"></i></button>
+		</div>
+	</div> <!-- end of alert -->
+
+	<div class="wrapper">
+		<div class="logo">
+			<div class="logo-top">
+				<h1>inspiragen</h1>
+			</div>
+			<hr/>
+			<div class="logo-bottom">
+				<p>
+					
+				</p>
+			</div>
+			<div class="desc">
+				<p>
+					
+				</p>
+			</div>
+		</div>
+
+		<div class="headline">
+			<p>
+				{{headline}} <span ng-show="author != 'by Admin'"><button ng-click="addVote()" class="btn-vote">{{voteText}}</button></span>
+			</p>
+			<p>
+				<a ng-href="{{authorLink}}">{{author}}</a>
+				<br/><br/>
+				<span ng-show="author != 'by Admin'">Inspired {{numOfVotes}} time<span ng-show="numOfVotes != 1">s</span>.</span>
+			</p>
+			<button ng-click="generateHeadline()" title="Generate a new headline">Generate</button>
+			<button ng-click="submitHeadline($event)" title="Submit a new idea">Submit</button>
+		</div>
+
+	</div>
+
+	<footer>
+		<div class="footer-inner">
+			<p>
+				Made with <i class="fa fa-heart"></i> by <a href="https://twitter.com/danieldafoe">@danieldafoe</a>
+			</p>
+		</div>
+	</footer>
+
+	<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<script src="js/angular-animate.min.js" type="text/javascript"></script>
+	<script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
